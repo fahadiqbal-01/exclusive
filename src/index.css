@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slick-dots .slick-active div {
+  background: red !important;
+  border: 2px solid white;
+}
+body {
+  scroll-behavior: smooth;
+}
+.profie_dropdown {
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.829551889115021) 27%,
+    rgba(0, 0, 0, 0.7315126734287465) 100%
+  );
+}
