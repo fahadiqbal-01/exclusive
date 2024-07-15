@@ -32,7 +32,7 @@ const ProductCard = ({
   };
 
   return (
-    <div className="w-[90%] sm:w-[95%] md:w-[95%] lg:w-[270px] xl:w-[270px] mx-auto sm:mx-[8px] md:mx-[10px] lg:mx-[22px] xl:mx-0 relative ">
+    <div className="w-[90%] sm:w-[95%] md:w-[95%] lg:w-[100%] xl:w-[270px] mx-auto sm:mx-[8px] md:mx-[10px] xl:mx-0 relative ">
       <div className=" bg-secondary h-[250px] px-[40px] py-[35px] rounded-[4px] relative group duration-500 overflow-hidden ">
         <Images
           onClick={handleNavigate}

@@ -10,6 +10,7 @@ import CustomerService from "../component/CustomerService";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { productReducer } from "../Slices/product_Slice";
+import { data } from "autoprefixer";
 
 const Home = () => {
   let [allproducts, setAllProducts] = useState([]);
@@ -30,7 +31,7 @@ const Home = () => {
       <Banner />
       <FlashSales products={allproducts} />
       <CategorySecond />
-      <BestSelling />
+      <BestSelling products={allproducts} />
       <CategoryThird />
       <ExploreProducts product={allproducts} />
       <NewArrival />

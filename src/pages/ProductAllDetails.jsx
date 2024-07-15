@@ -13,7 +13,11 @@ import { FiMinus } from "react-icons/fi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { TfiReload } from "react-icons/tfi";
 import Title from "../component/Title";
-import ProductDetailSLide from "../component/ProductDetailSLide";
+import ProductCardTwo from "../component/ProductCardTwo";
+import monitor from "../images/Monitor.png"
+import keyboard from "../images/keyboard.png"
+import controller from "../images/controller.png"
+import gpu from "../images/graphicsCard.png"
 
 const ProductAllDetails = () => {
   let { id } = useParams();
@@ -27,7 +31,6 @@ const ProductAllDetails = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
-
 
   let [blue, setBlue] = useState(false);
 
@@ -52,8 +55,8 @@ const ProductAllDetails = () => {
     <section>
       <Container>
         <BreadCrumb />
-        <Flex>
-          <div className=" flex gap-[30px] items-center w-[65%] ">
+        <Flex className=" xl:flex-row lg:flex-row flex-col xl:px-0 px-2 ">
+          <div className=" flex gap-[30px] items-center xl:w-[65%] w-full ">
             <div className=" flex flex-col gap-[16px] ">
               <Images
                 src={allproducts.thumbnail}
@@ -84,11 +87,11 @@ const ProductAllDetails = () => {
               src={allproducts.thumbnail}
               className={`${
                 blue ? "bg-[#A0BCE0]" : "bg-secondary"
-              } w-full scale-[.9]`}
+              } xl:w-full w-[70%] scale-[.9]`}
             />
           </div>
-          <div className=" w-[35%]">
-            <h1 className=" text-[24px] font-semibold leading-[24px] text-black font-inter ">
+          <div className=" xl:w-[35%] w-full">
+            <h1 className=" text-[24px] font-semibold leading-[24px] text-black font-inter mt-[20px] xl:mt-0 ">
               Havic HV G-92 Gamepad
             </h1>
             {/* ===  product title === */}
@@ -153,7 +156,7 @@ const ProductAllDetails = () => {
             </div>
             {/* ===  product size === */}
 
-            <div className=" mt-[24px] flex items-center justify-between ">
+            <div className=" mt-[24px] flex xl:flex-row flex-wrap gap-2 xl:gap-0 items-center justify-between sm:justify-start ">
               <Flex className=" items-center">
                 <span
                   onClick={handleValueMinus}
@@ -193,7 +196,7 @@ const ProductAllDetails = () => {
                   </span>
                 </h2>
               </div>
-              <div className=" flex items-center gap-[16px] pl-[16px] pb-[16px] pt-[24px] pr-[51px] border-[1px] border-[#7D8184] rounded-b-[4px]  ">
+              <div className=" flex items-center gap-[16px] pl-[16px] pb-[16px] pt-[24px] pr-[51px] border-[1px] border-[#7D8184] rounded-b-[4px] ">
                 <TfiReload className=" text-[40px] " />
                 <h2 className=" text-[16px] font-medium font-poppins leading-[24px] text-black ">
                   Return Delivery
@@ -207,9 +210,14 @@ const ProductAllDetails = () => {
             {/* ===  product delivery details === */}
           </div>
         </Flex>
-        <div className=" mt-[140px] mb-[60px] ">
+        <div className=" mt-[140px] mb-[60px] px-2 xl:px-0 ">
           <Title subtitle="Related Item" />
-          <ProductDetailSLide products />
+          <div className=" flex xl:flex-row flex-wrap justify-between mt-[20px] xl:mt-0 ">
+            <ProductCardTwo productImg={monitor} ProductName="HAVIT HV-G92 Gamepad" price="$120" />
+            <ProductCardTwo productImg={keyboard} ProductName="AK-900 Wired Keyboard" price="$960" />
+            <ProductCardTwo productImg={controller} ProductName="IPS LCD Gaming Monitor" price="$370" />
+            <ProductCardTwo productImg={gpu} ProductName="RGB liquid CPU Cooler" price="$160" />
+          </div>
         </div>
       </Container>
     </section>

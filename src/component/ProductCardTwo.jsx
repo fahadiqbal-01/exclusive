@@ -9,7 +9,7 @@ import { CiHeart } from "react-icons/ci";
 
 const ProductCardTwo = ({price, ProductName, productImg}) => {
   return (
-    <div className="w-[90%] xl:w-[270px] mx-auto xl:mx-0 relative mb-[60px] ">
+    <div className=" w-full sm:w-[48%] md:w-[48%] lg:w-[48%] xl:w-[270px] mx-auto xl:mx-0 relative mb-[60px] ">
     <div className=" bg-secondary h-[250px] px-[40px] py-[35px] rounded-[4px] relative group duration-500 overflow-hidden ">
       <Images src={productImg} alt="monitor-image" className="mx-auto"/>
       <div className=" absolute top-3 right-3 ">

@@ -7,12 +7,10 @@ import ProductCard from "./ProductCard";
 import Slider from "react-slick";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
-import Monitor from "../images/Monitor.png";
-import { useSelector, useDispatch } from "react-redux";
 
 const FlashSales = ({ products }) => {
-  
-  let productdata = products;
+
+  let productData = products
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -122,22 +120,24 @@ const FlashSales = ({ products }) => {
         </Flex>
         <div className="slider-container mt-[40px] xl:mt-[60px]">
           <Slider {...settings}>
-            {productdata.map((item) => (
-              <div>
-                <ProductCard
-                  id={item.id}
-                  productImg={item.thumbnail}
-                  discount={`-${Math.floor(item.discountPercentage)}%`}
-                  newPrice={`$${Math.floor(
-                    item.price - (item.discountPercentage / 100) * item.price
-                  )}`}
-                  oldPrice={`$${item.price}`}
-                  productName={item.title}
-                  rating={item.rating}
-                  reviewcount={item.reviews.length}
-                />
-              </div>
-            ))}
+            {productData &&
+              productData.map((items) => (
+                <div>
+                  <ProductCard
+                    key={items.id}
+                    id={items.id}
+                    productImg={items.thumbnail}
+                    discount={`-${Math.floor(items.discountPercentage)}%`}
+                    newPrice={`$${Math.floor(
+                      items.price - (items.discountPercentage / 100) * items.price
+                    )}`}
+                    oldPrice={`$${items.price}`}
+                    productName={items.title}
+                    rating={items.rating}
+                    reviewcount={items.reviews.length}
+                  />
+                </div>
+              ))}
           </Slider>
         </div>
         <div className=" flex items-center justify-center mt-[35px] xl:mt-[60px] after:content-[''] after:w-full after:h-[0.5px] after:bg-gray-300 after:absolute after:bottom-[-25px] xl:after:bottom-[-60px] after:left-0 relative ">

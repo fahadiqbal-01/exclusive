@@ -128,6 +128,7 @@ const ExploreProducts = ({ product }) => {
             {productdata.map((item) => (
               <div>
                 <ProductCard
+                  key={item.id}
                   id={item.id}
                   productImg={item.thumbnail}
                   discount={`-${Math.floor(item.discountPercentage)}%`}
@@ -145,7 +146,7 @@ const ExploreProducts = ({ product }) => {
         </div>
         <div className=" flex justify-center items-center">
           <Link
-          onClick={scrollToTop}
+            onClick={scrollToTop}
             to="/shop"
             className=" inline-block text-[16px] font-medium leading-[24px] font-poppins text-white px-[48px] py-[16px] bg-orange rounded-[4px] "
           >

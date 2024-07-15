@@ -39,7 +39,7 @@ const ShopByProducts = ({ loading }) => {
               </select>
             </div>
           </div>
-          <Flex className=" justify-between flex-wrap xl:flex-wrap gap-[30px] mt-[20px] sm:mt-[20px] md:mt-0 lg:mt-0 xl:mt-0 ">
+          <Flex className=" justify-between flex-wrap xl:flex-wrap gap-[30px] lg:gap-0 mt-[20px] sm:mt-[20px] md:mt-0 lg:mt-0 xl:mt-0 ">
             <Pagination itemsPerPage={itemperpage}/>
           </Flex>
         </div>

@@ -20,13 +20,13 @@ const CartItem = ({ src, alt, productName, price, totalCart }) => {
 
   return (
     <div>
-      <Flex className="items-center justify-between px-[40px] py-[24px] reounded-[4px] drop-shadow-md shadow-md mt-[40px] ">
+      <Flex className="items-center justify-between xl:px-[40px] lg:px-[20px] md:px-[10px] sm:px-3 px-[16px] py-[24px] reounded-[4px] drop-shadow-md shadow-md mt-[40px] ">
         <div className=" flex items-center justify-center gap-[20px] relative ">
           <div className=" relative">
             <img src={src} alt={alt} className="w-[54px]" />
             <MdCancel className=" text-[24px] text-orange absolute top-[-10px] left-[-10px] bg-white rounded-full border-0 " />
           </div>
-          <h2 className=" w-[200px] text-[16px] font-poppins font-normal leading-[24px] text-black absolute top-[50%] translate-y-[-50%] left-[80px] ">
+          <h2 className=" w-[200px] text-[16px] font-poppins font-normal leading-[24px] text-black absolute top-[50%] translate-y-[-50%] left-[80px] hidden sm:block md:block lg:block xl:block ">
             {`${productName.slice(0, 6)}...`}
           </h2>
         </div>
