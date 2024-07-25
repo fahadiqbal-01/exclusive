@@ -124,7 +124,6 @@ const FlashSales = ({ products }) => {
               productData.map((items) => (
                 <div>
                   <ProductCard
-                    key={items.id}
                     id={items.id}
                     productImg={items.thumbnail}
                     discount={`-${Math.floor(items.discountPercentage)}%`}

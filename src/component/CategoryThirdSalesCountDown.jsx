@@ -5,7 +5,7 @@ import { countDownDateAndTime } from "countdown-date-time";
 const CategoryThirdSalesCountDown = () => {
     let [count, setCount] = useState({});
 
-    const conduct_date = "2024-07-25 16:54:00";
+    const conduct_date = "2024-10-25 16:54:00";
   
     useEffect(() => {
       const countDown = countDownDateAndTime(conduct_date);

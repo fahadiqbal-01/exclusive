@@ -128,7 +128,6 @@ const ExploreProducts = ({ product }) => {
             {productdata.map((item) => (
               <div>
                 <ProductCard
-                  key={item.id}
                   id={item.id}
                   productImg={item.thumbnail}
                   discount={`-${Math.floor(item.discountPercentage)}%`}
