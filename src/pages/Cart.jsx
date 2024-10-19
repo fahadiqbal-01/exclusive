@@ -14,8 +14,11 @@ const Cart = () => {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
-  let totalCart = cartData;
 
+  const subtotal = cartData.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   console.log(cartData);
 
   return (
@@ -37,10 +40,10 @@ const Cart = () => {
               Subtotal
             </h2>
           </Flex>
-          {cartData.map((item) => (
+          {cartData.map((item, index) => (
             <CartItem
-              key={item.id}
-              totalCart={totalCart}
+              key={index}
+              id={item.id}
               src={item.thumbnail}
               productName={item.title}
               price={Math.floor(
@@ -59,6 +62,7 @@ const Cart = () => {
             </button>
           </div>
         </div>
+        <h1>{subtotal}</h1>
       </Container>
     </section>
   );

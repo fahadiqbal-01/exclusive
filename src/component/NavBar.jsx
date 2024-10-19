@@ -12,8 +12,11 @@ import { FiShoppingBag } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { FaRegStar } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
+let cartData = useSelector((state)=>state)
+
   let [toogle, setToogle] = useState(false);
   let [profileactive, setProfileActive] = useState(false);
 
@@ -105,10 +108,11 @@ const NavBar = () => {
                 <a href="#">
                   <CiHeart className=" text-[32px] text-white xl:text-black " />
                 </a>
-                <a href="#">
+                <a href="#" className=" relative">
                   <Link to="/Cart">
                     <PiShoppingCartLight className=" text-[32px] text-white xl:text-black " />
                   </Link>
+                  <h5 className=" text-[16px] text-white absolute top-[-10px] right-[-5px] px-[5px] bg-red-500 rounded-full">2</h5>
                 </a>
                 <div className=" relative">
                   <CgProfile

@@ -21,11 +21,15 @@ export const product_Slice = createSlice({
       state.cart = [...state.cart, action.payload];
       localStorage.setItem("cart", JSON.stringify([...state.cart, action.payload]));
     },
+    removeProduct: (state, action)=>{
+      console.log(action.payload);
+      
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { productReducer, filterProductReducer, cartReducer } =
+export const { productReducer, filterProductReducer, cartReducer, removeProduct } =
   product_Slice.actions;
 
 export default product_Slice.reducer;

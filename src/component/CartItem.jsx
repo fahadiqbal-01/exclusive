@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 
-const CartItem = ({ src, alt, productName, price, totalCart }) => {
+const CartItem = ({ src, alt, productName, price, id }) => {
+console.log(id);
+
+
   let [value, setValue] = useState("1");
 
   let handleValuePlus = () => {
@@ -13,10 +16,9 @@ const CartItem = ({ src, alt, productName, price, totalCart }) => {
     setValue(parseInt(value) - 1);
   };
 
-  let Quantity = totalCart;
-  let totalPrice = () => {
-    return parseInt(price) * parseInt(value);
-  };
+  let handleDeleteCart=()=>{
+    console.log("click")
+  }
 
   return (
     <div>
@@ -24,7 +26,7 @@ const CartItem = ({ src, alt, productName, price, totalCart }) => {
         <div className=" flex items-center justify-center gap-[20px] relative ">
           <div className=" relative">
             <img src={src} alt={alt} className="w-[54px]" />
-            <MdCancel className=" text-[24px] text-orange absolute top-[-10px] left-[-10px] bg-white rounded-full border-0 " />
+            <MdCancel onClick={handleDeleteCart} className=" text-[24px] text-orange absolute top-[-10px] left-[-10px] bg-white rounded-full border-0 " />
           </div>
           <h2 className=" w-[200px] text-[16px] font-poppins font-normal leading-[24px] text-black absolute top-[50%] translate-y-[-50%] left-[80px] hidden sm:block md:block lg:block xl:block ">
             {`${productName.slice(0, 6)}...`}
@@ -45,7 +47,7 @@ const CartItem = ({ src, alt, productName, price, totalCart }) => {
           </div>
         </Flex>
         {/* <h2>${price}</h2> */}
-        <h1> {totalPrice().toFixed(2)} </h1>
+        <h1> {price} </h1>
       </Flex>
     </div>
   );
