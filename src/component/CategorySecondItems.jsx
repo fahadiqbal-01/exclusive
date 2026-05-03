@@ -104,17 +104,15 @@ const CategorySecondItems = () => {
     <div className="slider-container">
       <Slider {...settings}>
         <div>
-
-           <div className="w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
+          <div className=" my-2 w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
             <SlScreenSmartphone className="text-[56px] text-black mx-auto mt-[25px] group-hover:text-primary duration-300 ease-linear " />
             <h4 className="text-[16px] font-normal font-poppins leading-[24px] text-black mt-[16px] group-hover:text-primary duration-300 ease-in-out">
               Phones
             </h4>
           </div>
-         
         </div>
         <div>
-          <div className="w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
+          <div className=" my-2 w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
             <HiOutlineDesktopComputer className="text-[56px] text-black mx-auto mt-[25px] group-hover:text-primary duration-300 ease-linear " />
             <h4 className="text-[16px] font-normal font-poppins leading-[24px] text-black mt-[16px] group-hover:text-primary duration-300 ease-in-out">
               Computers
@@ -122,7 +120,7 @@ const CategorySecondItems = () => {
           </div>
         </div>
         <div>
-          <div className="w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
+          <div className=" my-2 w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
             <IoWatchOutline className="text-[56px] text-black mx-auto mt-[25px] group-hover:text-primary duration-300 ease-linear " />
             <h4 className="text-[16px] font-normal font-poppins leading-[24px] text-black mt-[16px] group-hover:text-primary duration-300 ease-in-out">
               SmartWatch
@@ -130,7 +128,7 @@ const CategorySecondItems = () => {
           </div>
         </div>
         <div>
-          <div className="w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
+          <div className=" my-2 w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
             <IoCameraOutline className="text-[56px] text-black mx-auto mt-[25px] group-hover:text-primary duration-300 ease-linear " />
             <h4 className="text-[16px] font-normal font-poppins leading-[24px] text-black mt-[16px] group-hover:text-primary duration-300 ease-in-out">
               Camera
@@ -138,7 +136,7 @@ const CategorySecondItems = () => {
           </div>
         </div>
         <div>
-          <div className="w-[170px] h-[145px] border-[1px]  text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
+          <div className=" my-2 w-[170px] h-[145px] border-[1px]  text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
             <RiHeadphoneLine className="text-[56px] text-black mx-auto mt-[25px] group-hover:text-primary duration-300 ease-linear " />
             <h4 className="text-[16px] font-normal font-poppins leading-[24px] text-black mt-[16px] group-hover:text-primary duration-300 ease-in-out">
               HeadPhones
@@ -146,7 +144,7 @@ const CategorySecondItems = () => {
           </div>
         </div>
         <div>
-          <div className="w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
+          <div className=" my-2 w-[170px] h-[145px] border-[1px] text-center border-black rounded-[4px] mx-auto hover:bg-orange hover:border-transparent transition duration-300 ease-linear group  ">
             <LuGamepad className="text-[56px] text-black mx-auto mt-[25px] group-hover:text-primary duration-300 ease-linear " />
             <h4 className="text-[16px] font-normal font-poppins leading-[24px] text-black mt-[16px] group-hover:text-primary duration-300 ease-in-out">
               Gaming

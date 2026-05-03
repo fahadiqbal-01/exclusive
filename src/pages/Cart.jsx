@@ -9,17 +9,17 @@ import Shop from "./Shop";
 
 const Cart = () => {
   let cartData = useSelector((state) => state.allproduct.cart);
-  console.log(cartData);
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
 
-  const subtotal = cartData.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-  console.log(cartData);
+  const subtotal = cartData.reduce((acc, item) => {
+    const price = Math.floor(
+      item.price - (item.discountPercentage / 100) * item.price,
+    );
+    return acc + price * (item.quantity || 1);
+  }, 0);
 
   return (
     <section className=" pb-[500px] ">
@@ -44,10 +44,11 @@ const Cart = () => {
             <CartItem
               key={index}
               id={item.id}
+              quantity={item.quantity}
               src={item.thumbnail}
               productName={item.title}
               price={Math.floor(
-                item.price - (item.discountPercentage / 100) * item.price
+                item.price - (item.discountPercentage / 100) * item.price,
               )}
             />
           ))}
@@ -62,7 +63,16 @@ const Cart = () => {
             </button>
           </div>
         </div>
-        <h1>{subtotal}</h1>
+        <div className="mt-[80px] flex justify-end">
+          <div className="w-[470px] border-[1.5px] border-black rounded-[4px] px-[24px] py-[32px]">
+            <h2 className="text-[20px] font-medium leading-[28px] font-poppins text-black mb-[24px]">
+              Cart Total
+            </h2>
+            <h3 className="text-[16px] font-normal leading-[24px] font-poppins text-black pb-[16px] border-b-[1px] border-[#808080] flex justify-between">
+              Subtotal: <span>${subtotal}</span>
+            </h3>
+          </div>
+        </div>
       </Container>
     </section>
   );

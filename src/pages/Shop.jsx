@@ -12,7 +12,8 @@ import { List } from "antd";
 import ListItems from "../component/ListItems";
 
 const Shop = () => {
-  let filterData = useSelector((state) => state.allproduct);
+  let filterData = useSelector((state) => state.allproduct.product);
+  let backupData = useSelector((state) => state.allproduct.backupProduct);
 
   let [categorytoogle, setCategoryToogle] = useState(false);
   let [allproducts, setAllProducts] = useState([]);
@@ -27,23 +28,28 @@ const Shop = () => {
   }
 
   useEffect(() => {
-    getAllProducts();
+    if (backupData.length === 0) {
+      getAllProducts();
+    } else {
+      setAllProducts(backupData);
+      setLoading(false);
+    }
   }, []);
 
   let [ucategory, setUcategory] = useState([]);
 
   useEffect(() => {
-    let uniqueCategory = [...new Set(allproducts.map((item) => item.category))];
+    let uniqueCategory = [...new Set(backupData.map((item) => item.category))];
     setUcategory(uniqueCategory);
-  }, [allproducts]);
+  }, [backupData]);
 
   let handleFilterCategory = (item) => {
-    let filterProduct = allproducts.filter((Uitem) => Uitem.category == item);
+    let filterProduct = backupData.filter((Uitem) => Uitem.category == item);
     dispatch(filterProductReducer(filterProduct));
   };
 
   let handleAllProducts = () => {
-    dispatch(productReducer(allproducts));
+    dispatch(filterProductReducer(backupData));
   };
 
   return (
@@ -52,15 +58,15 @@ const Shop = () => {
         <BreadCrumb />
 
         <Flex className=" flex-col xl:flex-row ">
-          <div className="w-full xl:w-[25%] relative z-50">
+          <div className="w-full xl:w-[25%] relative ">
             <div
               onClick={() => setCategoryToogle(!categorytoogle)}
               className={`${
                 categorytoogle ? "bg-black text-white no-underline" : ""
-              } xl:hidden flex items-center gap-[10px] px-[5px] py-[2px] underline rounded-lg w-[120px] ml-5 xl:ml-0 `}
+              } xl:hidden flex items-center gap-[10px] px-[5px] py-[2px] underline rounded-lg w-[120px] ml-5 xl:ml-0 -z-50 `}
             >
               <BiCategoryAlt className=" text-[18px] " />
-              <h4 className="text-[16px] cursor-default font-poppins font-normal">
+              <h4 className="text-[16px] cursor-default font-poppins font-normal  ">
                 Category
               </h4>
             </div>

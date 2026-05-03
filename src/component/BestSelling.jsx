@@ -64,22 +64,24 @@ const BestSelling = ({ products }) => {
           <div className="slider-container">
             <Slider {...settings}>
               {products &&
-              products.map((items) => (
-                <div>
-                  <ProductCard
-                    id={items.id}
-                    productImg={items.thumbnail}
-                    discount={`-${Math.floor(items.discountPercentage)}%`}
-                    newPrice={`$${Math.floor(
-                      items.price - (items.discountPercentage / 100) * items.price
-                    )}`}
-                    oldPrice={`$${items.price}`}
-                    productName={items.title}
-                    rating={items.rating}
-                    reviewcount={items.reviews.length}
-                  />
-                </div>
-              ))}
+                products.map((items) => (
+                  <div>
+                    <ProductCard
+                      ProductDetails={items}
+                      id={items.id}
+                      productImg={items.thumbnail}
+                      discount={`-${Math.floor(items.discountPercentage)}%`}
+                      newPrice={`$${Math.floor(
+                        items.price -
+                          (items.discountPercentage / 100) * items.price,
+                      )}`}
+                      oldPrice={`$${items.price}`}
+                      productName={items.title}
+                      rating={items.rating}
+                      reviewcount={items.reviews.length}
+                    />
+                  </div>
+                ))}
             </Slider>
           </div>
         </div>

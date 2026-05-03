@@ -6,16 +6,28 @@ import ListItems from "./ListItems";
 import { CiHeart, CiSearch, CiStar } from "react-icons/ci";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { RiH1, RiMenu4Fill, RiMenu5Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { FiShoppingBag } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { FaRegStar } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { filterProductReducer } from "../Slices/product_Slice";
 
 const NavBar = () => {
-let cartData = useSelector((state)=>state)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const cartData = useSelector((state) => state.allproduct.cart);
+  const wishlistData = useSelector((state) => state.allproduct.wishlist);
+  const allMasterProducts = useSelector(
+    (state) => state.allproduct.backupProduct,
+  );
+  const totalItems = cartData.reduce(
+    (acc, item) => acc + (item.quantity || 1),
+    0,
+  );
 
   let [toogle, setToogle] = useState(false);
   let [profileactive, setProfileActive] = useState(false);
@@ -27,16 +39,26 @@ let cartData = useSelector((state)=>state)
     setToogle(false);
   };
 
+  let handleSearch = (e) => {
+    if (!allMasterProducts) return;
+    let searchResult = allMasterProducts.filter((item) =>
+      item.title.toLowerCase().includes(e.target.value.toLowerCase()),
+    );
+    dispatch(filterProductReducer(searchResult));
+    if (location.pathname !== "/Shop") {
+      navigate("/Shop");
+    }
+  };
+
   return (
     <nav
       className={`${
         toogle ? "bg-black border-b-0 " : "bg-transparent border-b-[1px]"
-      } pt-[15px] xl:pt-[40px] pb-[16px]`}
+      } pt-[15px] xl:pt-[40px]z-50  pb-[16px]`}
     >
       <Container>
         <div className="flex justify-between items-center relative z-50">
           <Link to="/">
-            {" "}
             <Images
               src="images/Logo.png"
               alt="navlogo"
@@ -98,6 +120,7 @@ let cartData = useSelector((state)=>state)
             <div className=" flex items-center gap-[24px] mt-3 xl:mt-0 ">
               <div className=" relative w-[243px] ">
                 <input
+                  onChange={handleSearch}
                   type="text"
                   placeholder="What are you looking for?"
                   className="w-full h-[38px] bg-[#F5F5F5] text-[12px] px-[20px] py-[10px] rounded-[4px] font-poppins placeholder:text-[12px] font-[400] leading-[18px] text-black "
@@ -105,15 +128,17 @@ let cartData = useSelector((state)=>state)
                 <CiSearch className=" absolute right-[14px] top-[8px] text-[24px] " />
               </div>
               <div className=" flex gap-[16px] items-center ">
-                <a href="#">
+                <Link to="/Wishlist">
                   <CiHeart className=" text-[32px] text-white xl:text-black " />
-                </a>
-                <a href="#" className=" relative">
-                  <Link to="/Cart">
-                    <PiShoppingCartLight className=" text-[32px] text-white xl:text-black " />
-                  </Link>
-                  <h5 className=" text-[16px] text-white absolute top-[-10px] right-[-5px] px-[5px] bg-red-500 rounded-full">2</h5>
-                </a>
+                </Link>
+                <Link to="/Cart" className=" relative">
+                  <PiShoppingCartLight className=" text-[32px] text-white xl:text-black " />
+                  {totalItems > 0 && (
+                    <h5 className=" text-[16px] text-white absolute top-[-10px] right-[-5px] px-[5px] bg-red-500 rounded-full">
+                      {totalItems}
+                    </h5>
+                  )}
+                </Link>
                 <div className=" relative">
                   <CgProfile
                     onClick={() => setProfileActive(!profileactive)}
@@ -129,7 +154,7 @@ let cartData = useSelector((state)=>state)
                         <CgProfile className="text-[32px] text-white " />
                         <h4 className=" text-[14px] font-normal font-poppins leading-[21px] text-[#FAFAFA] ">
                           Manage My Account
-                        </h4>{" "}
+                        </h4>
                       </ListItems>
                       <ListItems className=" flex items-center justify-start gap-[16px] mt-[13px] ">
                         <FiShoppingBag className="text-[32px] text-white " />

@@ -5,14 +5,11 @@ import Skeleton from "./Skeleton";
 import Pagination from "./Pagination";
 
 const ShopByProducts = ({ loading }) => {
-
   let [itemperpage, setItemPErPage] = useState(9);
 
-
   let handleItemPerPage = (e) => {
-    setItemPErPage(e.target.value);
+    setItemPErPage(Number(e.target.value));
   };
-
 
   return (
     <div>
@@ -39,8 +36,8 @@ const ShopByProducts = ({ loading }) => {
               </select>
             </div>
           </div>
-          <Flex className=" justify-between flex-wrap xl:flex-wrap gap-[30px] lg:gap-0 mt-[20px] sm:mt-[20px] md:mt-0 lg:mt-0 xl:mt-0 ">
-            <Pagination itemsPerPage={itemperpage}/>
+          <Flex className=" justify-start flex-wrap xl:flex-wrap gap-x-[30px] gap-y-[50px] mt-[20px] sm:mt-[20px] md:mt-0 lg:mt-0 xl:mt-[40px] ">
+            <Pagination itemsPerPage={itemperpage} />
           </Flex>
         </div>
       )}

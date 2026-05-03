@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 const Pagination = ({ itemsPerPage }) => {
   let productdata = useSelector((state) => state.allproduct.product);
   const items = productdata;
+  console.log(productdata);
 
   function Items({ currentItems }) {
     return (
@@ -20,7 +21,7 @@ const Pagination = ({ itemsPerPage }) => {
                 productImg={item.thumbnail}
                 discount={`-${Math.floor(item.discountPercentage)}%`}
                 newPrice={`$${Math.floor(
-                  item.price - (item.discountPercentage / 100) * item.price
+                  item.price - (item.discountPercentage / 100) * item.price,
                 )}`}
                 oldPrice={`$${item.price}`}
                 productName={item.title}
@@ -34,18 +35,21 @@ const Pagination = ({ itemsPerPage }) => {
   }
 
   const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const endOffset = itemOffset + itemsPerPage;
-  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  useEffect(() => {
+    setItemOffset(0);
+    setCurrentPage(0);
+  }, [productdata, itemsPerPage]);
+
+  const endOffset = itemOffset + Number(itemsPerPage);
   const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const pageCount = Math.ceil(items.length / Number(itemsPerPage));
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-    // );
+    const newOffset = (event.selected * Number(itemsPerPage)) % items.length;
     setItemOffset(newOffset);
+    setCurrentPage(event.selected);
   };
 
   return (
@@ -55,11 +59,12 @@ const Pagination = ({ itemsPerPage }) => {
         breakLabel="..."
         nextLabel=""
         onPageChange={handlePageClick}
+        forcePage={currentPage}
         pageRangeDisplayed={4}
         pageCount={pageCount}
         previousLabel=""
         renderOnZeroPageCount={null}
-        className="flex gap-[10px] w-full mt-[20px] "
+        className="flex gap-[10px] w-full mt-[50px] mb-[20px] "
         pageClassName="px-[25px] py-[2px] bg-black text-white "
       />
     </>

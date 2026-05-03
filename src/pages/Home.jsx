@@ -10,7 +10,6 @@ import CustomerService from "../component/CustomerService";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { productReducer } from "../Slices/product_Slice";
-import { data } from "autoprefixer";
 
 const Home = () => {
   let [allproducts, setAllProducts] = useState([]);
@@ -20,6 +19,7 @@ const Home = () => {
     let data = await axios.get("https://dummyjson.com/products");
     setAllProducts(data.data.products);
     dispatch(productReducer(data.data.products));
+    console.log(data);
   }
 
   useEffect(() => {

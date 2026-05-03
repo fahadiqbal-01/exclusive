@@ -9,15 +9,20 @@ import { Rate } from "antd";
 import SIze from "../component/SIze";
 import { FaPlus, FaRegHeart } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
-import { FiMinus } from "react-icons/fi";
+import { FiMinus, FiHeart } from "react-icons/fi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { TfiReload } from "react-icons/tfi";
 import Title from "../component/Title";
 import ProductCardTwo from "../component/ProductCardTwo";
-import monitor from "../images/Monitor.png"
-import keyboard from "../images/keyboard.png"
-import controller from "../images/controller.png"
-import gpu from "../images/graphicsCard.png"
+import monitor from "../images/Monitor.png";
+import keyboard from "../images/keyboard.png";
+import controller from "../images/controller.png";
+import gpu from "../images/graphicsCard.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  wishlistReducer,
+  removeWishlistReducer,
+} from "../Slices/product_Slice";
 
 const ProductAllDetails = () => {
   let { id } = useParams();
@@ -50,6 +55,22 @@ const ProductAllDetails = () => {
   let handleValueMinus = () => {
     setValue(parseInt(value) - 1);
   };
+
+  const dispatch = useDispatch();
+  const wishlistData = useSelector((state) => state.allproduct.wishlist);
+  const isFavourite = wishlistData.some((item) => item.id === allproducts.id);
+
+  let handleWishlistToggle = () => {
+    if (isFavourite) {
+      dispatch(removeWishlistReducer(allproducts.id));
+    } else {
+      dispatch(wishlistReducer(allproducts));
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <section>
@@ -117,7 +138,7 @@ const ProductAllDetails = () => {
             <h2 className=" text-[24px] font-normal font-inter leading-[24px] text-black tracking-[3%] mt-[16px] ">
               {`$${Math.floor(
                 allproducts.price -
-                  (allproducts.discountPercentage / 100) * allproducts.price
+                  (allproducts.discountPercentage / 100) * allproducts.price,
               )}`}
             </h2>
             {/* ===  product price === */}
@@ -180,8 +201,15 @@ const ProductAllDetails = () => {
               >
                 Buy Now
               </button>
-              <button className=" px-[10px] py-[11px] text-[20px] border-[1px] border-[#808080] rounded-[4px] ">
-                <FaRegHeart />{" "}
+              <button
+                onClick={handleWishlistToggle}
+                className=" px-[10px] py-[11px] text-[20px] border-[1px] border-[#808080] rounded-[4px] "
+              >
+                {isFavourite ? (
+                  <FiHeart className="text-orange" />
+                ) : (
+                  <FaRegHeart />
+                )}
               </button>
             </div>
             {/* ===  product quantity, wishlist, buynow === */}
@@ -213,10 +241,26 @@ const ProductAllDetails = () => {
         <div className=" mt-[140px] mb-[60px] px-2 xl:px-0 ">
           <Title subtitle="Related Item" />
           <div className=" flex xl:flex-row flex-wrap justify-between mt-[20px] xl:mt-0 ">
-            <ProductCardTwo productImg={monitor} ProductName="HAVIT HV-G92 Gamepad" price="$120" />
-            <ProductCardTwo productImg={keyboard} ProductName="AK-900 Wired Keyboard" price="$960" />
-            <ProductCardTwo productImg={controller} ProductName="IPS LCD Gaming Monitor" price="$370" />
-            <ProductCardTwo productImg={gpu} ProductName="RGB liquid CPU Cooler" price="$160" />
+            <ProductCardTwo
+              productImg={monitor}
+              ProductName="HAVIT HV-G92 Gamepad"
+              price="$120"
+            />
+            <ProductCardTwo
+              productImg={keyboard}
+              ProductName="AK-900 Wired Keyboard"
+              price="$960"
+            />
+            <ProductCardTwo
+              productImg={controller}
+              ProductName="IPS LCD Gaming Monitor"
+              price="$370"
+            />
+            <ProductCardTwo
+              productImg={gpu}
+              ProductName="RGB liquid CPU Cooler"
+              price="$160"
+            />
           </div>
         </div>
       </Container>

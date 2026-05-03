@@ -128,11 +128,12 @@ const ExploreProducts = ({ product }) => {
             {productdata.map((item) => (
               <div>
                 <ProductCard
+                  ProductDetails={item}
                   id={item.id}
                   productImg={item.thumbnail}
                   discount={`-${Math.floor(item.discountPercentage)}%`}
                   newPrice={`$${Math.floor(
-                    item.price - (item.discountPercentage / 100) * item.price
+                    item.price - (item.discountPercentage / 100) * item.price,
                   )}`}
                   oldPrice={`$${item.price}`}
                   productName={item.title}

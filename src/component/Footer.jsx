@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
           </div>
           <div className=" flex xl:static justify-evenly gap-0 xl:gap-[50px] mt-5 sm:mt-0 lg:mt-0 xl:mt-0 w-full xl:w-auto mr-0 sm:mr-2 md:mr-0 lg:mr-0 xl:mr-0 ">
-            <div className=" mt-0 sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 ">
+            <div className=" mt-0 sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 mr-auto md:ml-auto ml-2 ">
               <label className=" text-[16px] md:text-[18px] lg:text-[20px] xl:text-[20px] font-medium leading-[28px] font-poppins text-white ">
                 Account
               </label>
@@ -81,7 +81,7 @@ const Footer = () => {
                 </ListItems>
               </List>
             </div>
-            <div className=" mt-0 sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 ">
+            <div className=" mt-0 sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 md:mr-0 mr-auto md:ml-0 ml-14 ">
               <label className=" text-[16px] md:text-[18px] lg:text-[20px] xl:text-[20px] font-medium leading-[28px] font-poppins text-white ">
                 Quick Link
               </label>

@@ -9,8 +9,7 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const FlashSales = ({ products }) => {
-
-  let productData = products
+  let productData = products;
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -124,11 +123,13 @@ const FlashSales = ({ products }) => {
               productData.map((items) => (
                 <div>
                   <ProductCard
+                    ProductDetails={items}
                     id={items.id}
                     productImg={items.thumbnail}
                     discount={`-${Math.floor(items.discountPercentage)}%`}
                     newPrice={`$${Math.floor(
-                      items.price - (items.discountPercentage / 100) * items.price
+                      items.price -
+                        (items.discountPercentage / 100) * items.price,
                     )}`}
                     oldPrice={`$${items.price}`}
                     productName={items.title}

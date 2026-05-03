@@ -5,8 +5,12 @@ import { IoEyeOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { Rate } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { cartReducer } from "../Slices/product_Slice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cartReducer,
+  wishlistReducer,
+  removeWishlistReducer,
+} from "../Slices/product_Slice";
 
 const ProductCard = ({
   discount,
@@ -26,9 +30,22 @@ const ProductCard = ({
   };
 
   let dispatch = useDispatch();
+  const wishlistData = useSelector((state) => state.allproduct.wishlist);
+  const isFavourite = wishlistData.some((item) => item.id === id);
 
   let handleAddToCart = () => {
-    dispatch(cartReducer(ProductDetails));
+    if (ProductDetails) {
+      dispatch(cartReducer(ProductDetails));
+    }
+  };
+
+  let handleWishlistToggle = (e) => {
+    e.stopPropagation();
+    if (isFavourite) {
+      dispatch(removeWishlistReducer(id));
+    } else {
+      dispatch(wishlistReducer(ProductDetails));
+    }
   };
 
   return (
@@ -47,8 +64,13 @@ const ProductCard = ({
           <div className=" bg-primary w-[34px] p-[5px] rounded-full">
             <IoEyeOutline className="text-[24px] text-black " />
           </div>
-          <div className=" bg-primary w-[34px] p-[5px] rounded-full mt-[8px]">
-            <CiHeart className="text-[24px] text-black " />
+          <div
+            onClick={handleWishlistToggle}
+            className=" bg-primary w-[34px] p-[5px] rounded-full mt-[8px] cursor-pointer"
+          >
+            <CiHeart
+              className={`text-[24px] ${isFavourite ? "text-orange" : "text-black"} `}
+            />
           </div>
         </div>
         <button
