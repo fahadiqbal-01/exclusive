@@ -10,8 +10,12 @@ const SalesCountDown = () => {
   const conduct_date = "2027-10-25 16:54:00";
 
   useEffect(() => {
-    const countDown = countDownDateAndTime(conduct_date);
-    setCount(countDown);
+    const timer = setInterval(() => {
+      const currentCount = countDownDateAndTime(conduct_date);
+      setCount(currentCount);
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   return (
